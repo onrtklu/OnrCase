@@ -1,0 +1,44 @@
+﻿@model List<Std.Data.Domain.Product>
+@{
+    ViewData["Title"] = "DominosCaseHome";
+}
+
+<h2>DominosCaseHome</h2>
+
+@foreach (var item in Model)
+{
+    @Html.LabelForModel(item.ProductName)
+}
+
+
+<script>
+
+    $(document).ready(function () {
+        ProductList();
+    });
+
+    function ProductList() {
+        //var rezervasyonNo = $("#rezervasyonAra").val();
+        @*var onRezervasyonMu = $("#RezervasyonTipID").val();
+
+        var rezervasyonListeDto = new Object();
+        rezervasyonListeDto.RezervasyonNo = rezervasyonNo;
+        rezervasyonListeDto.OnRezervasyonMu = onRezervasyonMu;
+        rezervasyonListeDto.EtkinlikID = @Model.ID;*@
+
+        $.ajax({
+            type: "POST",
+            url: "/Product/Get/",
+            //data: rezervasyonListeDto,
+            success: function (jsReturnArgs) {
+
+                $("#rezervasyonList").html(jsReturnArgs.ViewString); //the HTML I returned from the controller
+
+            },
+            error: function (xhr, status, error) {
+                $("#parialDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+            }
+            //error: function (errorData) { onError(errorData); }
+        });
+    };
+</script>
