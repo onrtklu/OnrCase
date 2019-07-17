@@ -1,4 +1,4 @@
-# Dominos Case
+# Onur Case
 > - swagger
 > - .Net Core
 > - Ef Core
